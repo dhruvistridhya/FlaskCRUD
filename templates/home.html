@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class='content'>
+	<h1>Task Master</h1>
+
+	<form action="/" method="POST">
+		<input type="text" name="content" id="content">
+		<input type="submit" value="Add Task">
+	</form>
+	<table>
+		<tr>
+			<th>Task</th>
+			<th>content</th>
+			<th>Date Created</th>
+			<th>Actions</th>
+			<th>Task1</th>
+			<th>content1</th>
+			<th>Date_created1</th>
+			<th>Actions1</th>
+		</tr>	
+
+		{% for i in tasks %}
+		<tr>
+			<th>{{i.id}}</th>
+			<th>{{i.content}}</th>
+			<th>{{i.date_created.date()}}</th>
+			<th>
+				<a href="/update/{{i.id}}">Update</a><br>
+				<a href="/delete/{{i.id}}">Delete</a>
+			</th>
+		</tr>
+		{% endfor %}
+
+	</table>
+	<input type="hidden" id="custId" name="custId">
+</div>
+
+<script>
+function myFunction() {
+  let text;
+  let person = prompt("add task name:");
+  if (person == null || person == "") {
+    text = "User cancelled the prompt.";
+  } else {
+    document.getElementById("custId").innerHTML = text;
+  }
+  
+}
+</script>
+
+{% endblock %}
